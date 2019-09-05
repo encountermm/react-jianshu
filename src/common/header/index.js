@@ -17,6 +17,7 @@ import {
 	SearchInfoItem,
 	SearchInfoList
 } from './style'
+import { Link } from 'react-router-dom'
 
 // header组件
 class Header extends Component {
@@ -69,7 +70,9 @@ class Header extends Component {
 		const { focused, handleInputFocus, handleInputBlur, list } = this.props
 		return (
 			<HeaderWrapper>
-				<Logo href="/"></Logo>
+				<Link to="/">
+					<Logo />
+				</Link>
 				<Nav>
 					<NavItem className="left active">首页</NavItem>
 					<NavItem className="left">下载APP</NavItem>
@@ -116,7 +119,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		handleInputFocus(list) {
-			dispatch(actionCreators.getList())
+			list.size === 0 && dispatch(actionCreators.getList())
 			dispatch(actionCreators.searchFocus())
 		},
 		handleInputBlur() {
