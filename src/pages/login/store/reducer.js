@@ -2,17 +2,15 @@ import * as actionTypes from './actionTypes'
 import { fromJS } from 'immutable'
 
 const defaultSate = fromJS({
-	title: '',
-	content: ''
+	login: true
 })
 
 export default (state = defaultSate, action) => {
 	switch (action.type) {
-		case actionTypes.CHANGE_DETAIL:
-			return state.merge({
-				title: action.title,
-				content: action.content
-			})
+		case actionTypes.CHANGE_LOGIN:
+			return state.set('login', action.value)
+		case actionTypes.LOGOUT:
+			return state.set('login', action.value)
 		default:
 			return state
 	}
